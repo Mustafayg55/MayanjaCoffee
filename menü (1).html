@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayanja Coffee</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+ /* Genel Ayarlar */
+html, body {
+    height: 100%; /* Sayfanın tam yüksekliğini almasını sağlar */
+    margin: 0;
+    padding: 0;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a); /* Siyah ve koyu gri geçişi */
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* Menü yazılarını eşit şekilde yerleştirir */
+    padding: 10px 20px;
+    background-color: #222;
+    color: #ffd700;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Navbar öğeleri */
+.navbar ul li {
+    margin: 0 8px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1em;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #ffd700;
+}
+
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.mobile-menu a {
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    border-bottom: 1px solid #555;
+}
+
+.mobile-menu a:hover {
+    background-color: #444;
+}
+
+/* İçerik */
+.content {
+    padding: 20px;
+    background: #2b2b2b;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    flex-grow: 1; /* İçeriğin ekrana yayılmasına olanak tanır */
+}
+
+.content h2 {
+    color: #ffd700;
+    border-bottom: 2px solid #ffd700;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.menu-item {
+    text-align: center;
+    background-color: #333;
+    color: #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+    background-color: #444;
+}
+
+.menu-item img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 2px solid #ffd700;
+}
+
+/* Buton */
+button {
+    background-color: #444;
+    color: #ffd700;
+    border: 2px solid #ffd700;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #222;
+    color: #e0e0e0;
+    border-top: 2px solid #ffd700;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .navbar ul {
+        display: none;
+    }
+
+    .content {
+        padding: 15px;
+        margin: 15px auto;
+        max-width: 700px;
+    }
+
+    .menu-item {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    .menu-item {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 5px;
+        margin: 5px auto;
+    }
+
+    .menu-item {
+        max-width: 100%;
+    }
+}
+</style
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="#" onclick="showMainMenu()">Mayanja Coffee</a></div>
+        <ul>
+            <li><a href="#about" onclick="showSection('about', true)">Hakkımızda</a></li>
+            <li><a href="#contact" onclick="showSection('contact', true)">İletişim</a></li>
+            <li><a href="#location" onclick="showSection('location', true)">Lokasyon</a></li>
+        </ul>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="showSection('about', true)">Hakkımızda</a>
+        <a href="#contact" onclick="showSection('contact', true)">İletişim</a>
+        <a href="#location" onclick="showSection('location', true)">Lokasyon</a>
+    </div>
+
+    <div id="about" class="content">
+        <h2>Hakkımızda</h2>
+        <p>Mayanja Coffee, kaliteli kahveler ve tatlılarla sizlere hizmet vermektedir.</p>
+    </div>
+
+    <div id="contact" class="content">
+        <h2>İletişim</h2>
+        <p>Telefon: 123-456-7890</p>
+        <p>Adres: Mayanja Coffee, İstanbul</p>
+    </div>
+
+    <section id="location" class="content">
+        <h2>Lokasyonumuz</h2>
+        <li><a href="#order" onclick="showSection('order', true)">Sipariş Ver</a></li>
+        <p>Bizi ziyaret etmek için aşağıdaki haritayı kullanabilirsiniz:</p>
+        <div class="map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.12345!2d29.123456!3d41.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12345abcdef:0x12345abcdef!2sMekanınızın+Adı!5e0!3m2!1str!2str!4v1234567890123"
+                width="100%"
+                height="400px"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <section id="coffee" class="menu-section">
+        <h2>Kahveler</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="latte.jpg" alt="Latte">
+                <h3>Latte</h3>
+                <p>₺30</p>
+            </div>
+            <div class="menu-item">
+                <img src="espresso.jpg" alt="Espresso">
+                <h3>Espresso</h3>
+                <p>₺20</p>
+            </div>
+            <div class="menu-item">
+                <img src="cappuccino.jpg" alt="Cappuccino">
+                <h3>Cappuccino</h3>
+                <p>₺28</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="desserts" class="menu-section">
+        <h2>Tatlılar</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="cheesecake.jpg" alt="Cheesecake">
+                <h3>Cheesecake</h3>
+                <p>₺35</p>
+            </div>
+            <div class="menu-item">
+                <img src="tiramisu.jpg" alt="Tiramisu">
+                <h3>Tiramisu</h3>
+                <p>₺30</p>
+            </div>
+            <div class="menu-item">
+                <img src="brownie.jpg" alt="Brownie">
+                <h3>Brownie</h3>
+                <p>₺25</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="drinks" class="menu-section">
+        <h2>İçecekler</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="smoothie.jpg" alt="Smoothie">
+                <h3>Smoothie</h3>
+                <p>₺20</p>
+            </div>
+            <div class="menu-item">
+                <img src="limonata1.jpg" alt="Limonata">
+                <h3>Limonata</h3>
+                <p>₺15</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="content">
+        <h2>Sipariş Ver</h2>
+        <form id="orderForm">
+            <div>
+                <label for="name">Adınız:</label>
+                <input type="text" id="name" name="name" required placeholder="Adınızı girin">
+            </div>
+            <div>
+                <label for="phone">Telefon:</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Telefon numaranız">
+            </div>
+            <div>
+                <label for="product">Ürün Seçimi:</label>
+                <select id="product" name="product" required>
+                    <option value="latte">Latte - ₺30</option>
+                    <option value="espresso">Espresso - ₺20</option>
+                    <option value="cappuccino">Cappuccino - ₺28</option>
+                    <option value="cheesecake">Cheesecake - ₺35</option>
+                    <option value="tiramisu">Tiramisu - ₺30</option>
+                    <option value="brownie">Brownie - ₺25</option>
+                    <option value="smoothie">Smoothie - ₺20</option>
+                    <option value="limonata">Limonata - ₺15</option>
+                </select>
+            </div>
+            <div>
+                <label for="address">Adres:</label>
+                <textarea id="address" name="address" required placeholder="Sipariş adresinizi girin"></textarea>
+            </div>
+            <button type="submit">Siparişi Gönder</button>
+        </form>
+    </section>
+    
+
+    <footer class="footer">
+        <p>Tüm Hakları Saklıdır. 2025</p>
+    </footer>
+
+    <script>
+        function showMainMenu() {
+            const sections = document.querySelectorAll('.content');
+            const menuSections = document.querySelectorAll('.menu-section');
+
+            // Tüm içerikleri gizle
+            sections.forEach(sec => sec.style.display = 'none');
+
+            // Menü bölümlerini göster
+            menuSections.forEach(sec => sec.style.display = 'block');
+
+            // Sayfanın en üstüne kaydır
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showSection(section, scrollToTop = false) {
+            const sections = document.querySelectorAll('.content');
+            const menuSections = document.querySelectorAll('.menu-section');
+
+            // Tüm içerik ve menü bölümlerini gizle
+            sections.forEach(sec => sec.style.display = 'none');
+            menuSections.forEach(sec => sec.style.display = 'none');
+
+            // Belirtilen bölümü göster
+            const activeSection = document.getElementById(section);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
+
+            // Sayfanın en üstüne kaydır
+            if (scrollToTop) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.style.display === 'flex') {
+                mobileMenu.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
